@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- vim: set sw=2 sts=2: -->
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Configuration</title>
+  <script src="config/vue.js"></script>
+  <script src="config/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-for="s in settings">
+      {{ s.name }} :
+      <input type="text" v-model="s.urlhost"></input>
+      <input type="checkbox" v-model="s.valid"></input>
+      <button v-on:click="update(s)">Update</button>
+    </div>
+    <div>
+      <input type="text" v-model="name"></input>
+      <button v-on:click="add">Add</button>
+    </div>
+  </div>
+  <script src="config/app.js"></script>
+</body>
+</html>
