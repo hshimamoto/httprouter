@@ -34,10 +34,10 @@ class Host:
     print(url)
     if req.method == 'GET':
       print('get')
-      resp = requests.get(url, stream = True, params = req.args)
+      resp = requests.get(url, stream = True, headers = req.headers, params = req.args)
     elif req.method == 'POST':
       print('post')
-      resp = requests.post(url, stream = True)
+      resp = requests.post(url, stream = True, headers = req.headers, data = req.data)
     def generate():
       for chunk in resp.iter_content(4096):
         yield chunk
@@ -85,7 +85,7 @@ def setting(host = 'default', key = ''):
   host = hosts[host]
   if key == '':
     if request.method == 'POST':
-      print('update: ' + request.json)
+      print('update: ' + json.dumps(request.json))
       host.update(request.json)
   return jsonify({'name':host.name})
 
@@ -94,9 +94,10 @@ def setting(host = 'default', key = ''):
 @app.route('/route/<host>/<path:path>', methods=['GET', 'POST'])
 def route(host, path = ''):
   print('route to ' + host)
-  host = hosts[host]
-  if host.valid:
-    return host.redirect(path, request)
+  if host in hosts:
+    host = hosts[host]
+    if host.valid:
+      return host.redirect(path, request)
   return redirect('config')
 
 if __name__ == '__main__':
