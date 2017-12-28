@@ -28,6 +28,9 @@ var app = new Vue({
 	});
       }
     },
+    route(s) {
+      location.href = '/route/' + s.name;
+    },
     update(s) {
       console.log(s.name + ':' + s.update + " " + s.valid);
       axios.post('/setting/' + s.name, s).then(resp => {

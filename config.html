@@ -10,7 +10,9 @@
 <body>
   <div id="app">
     <div v-for="s in settings">
-      {{ s.name }} :
+      <span style="cursor: default;" v-on:click="route(s)">
+	{{ s.name }}
+      </span> :
       <input type="text" v-model="s.urlhost"></input>
       <input type="checkbox" v-model="s.valid"></input>
       <button v-on:click="update(s)">Update</button>
