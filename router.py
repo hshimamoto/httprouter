@@ -72,7 +72,8 @@ def settings():
   ls = []
   for host in hosts.values():
     print(host)
-    ls.append(host.dict())
+    if host.urlhost != '':
+      ls.append(host.dict())
   return jsonify(ls)
 
 @app.route('/setting', methods=['GET', 'POST'])
