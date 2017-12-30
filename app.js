@@ -35,7 +35,7 @@ var app = new Vue({
       }
     },
     update(s) {
-      console.log(s.name + ':' + s.update + " " + s.valid);
+      console.log(s.name + ': ' + s.urlhost + " " + s.valid);
       axios.post('/setting/' + s.name, s).then(resp => {
 	this.load();
       });
