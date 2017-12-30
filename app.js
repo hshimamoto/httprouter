@@ -29,7 +29,10 @@ var app = new Vue({
       }
     },
     route(s) {
-      location.href = '/route/' + s.name;
+      if (s.valid) {
+	var win = window.open('/route/' + s.name);
+	win.focus();
+      }
     },
     update(s) {
       console.log(s.name + ':' + s.update + " " + s.valid);

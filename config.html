@@ -10,7 +10,7 @@
 <body>
   <div id="app">
     <div v-for="s in settings">
-      <span style="cursor: default;" v-on:click="route(s)">
+      <span style="cursor: pointer;" v-on:click="route(s)">
 	{{ s.name }}
       </span> :
       <input type="text" v-model="s.urlhost"></input>
